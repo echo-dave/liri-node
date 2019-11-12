@@ -8,3 +8,7 @@ exports.seatgeak = {
   id: process.env.SEATGEIK_ID,
   secret: process.env.SEATGEEK_SECRET
 };
+
+exports.omdb = {
+  id: process.env.OMDB_ID
+};

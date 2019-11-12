@@ -26,7 +26,7 @@ do-what-it-says */
 switch (commandInput) {
     case 'concert-this':
         console.log('searching concert');
-        searchMovies(searchTerm);
+        searchMusic(searchTerm);
         break;
     case 'spotify-this-song':
         console.log('searching song');
@@ -36,6 +36,7 @@ switch (commandInput) {
         break;
     case 'movie-this':
         console.log('searching movies');
+        searchMovies(searchTerm);
 
         break;
     case 'do-what-it-says':
@@ -74,7 +75,8 @@ function searchSpot(searchTerm) {
     });
 }
 
-function searchMovies (searchTerm) {
+//search music events by band / peroformer name
+function searchMusic (searchTerm) {
     axios.get(`https://api.seatgeek.com/2/events?client_id=${keys.seatgeak.id}&performers.slug=${searchTerm}`)
     .then(function (response){
         for (let i=0; i < response.data.events.length; i++) {
@@ -90,8 +92,30 @@ ___________  `);
 
     })
     .catch(function (error) {
-        console.log("An Error occured " + error);
+        console.log("An error occured " + error);
     });
 
 
 };
+
+//search movies
+function searchMovies (searchTerm) {
+    axios.get(`http://www.omdbapi.com/?apikey=${keys.omdb.id}&t=${searchTerm}`)
+    .then(function (response) {
+        console.log(`
+Title: ${response.data.Title}
+Released: ${response.data.Year}
+IMDB: ${response.data.imdbRating}
+Rotten Tomatores: ${response.data.Ratings[1].Value}
+Country Produced: ${response.data.Country}
+Language: ${response.data.Language}
+Plot: ${response.data.Plot}
+Actors: ${response.data.Actors}`)
+
+
+    })
+    .catch (function(error){
+        console.log("An error occured " + error);
+    })
+
+}
