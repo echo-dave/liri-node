@@ -84,7 +84,7 @@ Performer:
 venue:
   ${response.data.events[i].venue.name}
   ${response.data.events[i].venue.city}
-  ${response.data.events[i].venue.datetime_local}
+  ${response.data.events[i].datetime_local}
 ___________  `);
         }
 
