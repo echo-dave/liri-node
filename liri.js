@@ -134,6 +134,6 @@ function randomDo() {
     });
 };
 
-module.exports = radomDo;
+module.exports = randomDo;
 module.exports = searchMovies;
 module.exports = searchMusic;
