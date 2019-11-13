@@ -22,7 +22,7 @@ for (let i = 3; i < process.argv.length; i++) {
 spotify-this-song
 movie-this
 do-what-it-says */
-
+function switchCases(commandInput,searchTerm) {
 switch (commandInput) {
     case 'concert-this':
         console.log('searching concert');
@@ -43,6 +43,7 @@ switch (commandInput) {
         randomDo();
         break;
 
+}
 }
 
 // Spotify Search funtion
@@ -134,6 +135,7 @@ function randomDo() {
     });
 };
 
-module.exports = randomDo;
-module.exports = searchMovies;
+module.exports = {randomDo,searchMovies,searchMusic,switchCases}
+/* module.exports = searchMovies;
 module.exports = searchMusic;
+module.exports = switchCases */
