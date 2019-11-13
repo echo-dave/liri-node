@@ -37,11 +37,10 @@ switch (commandInput) {
     case 'movie-this':
         console.log('searching movies');
         searchMovies(searchTerm);
-
         break;
     case 'do-what-it-says':
         console.log('doing what it says');
-
+        randomDo();
         break;
 
 }
@@ -119,3 +118,22 @@ Actors: ${response.data.Actors}`)
     })
 
 }
+
+//Do file
+
+function randomDo() {
+    fs.readFile("./random.txt", 'utf8', function (err, data) {
+        if (err) {
+            console.log(`Error:  ${err}`);
+        } else {
+            data = data.split(',');
+            commandInput = data[0];
+            searchTerm = data[1]
+            searchSpot(searchTerm);
+        }
+    });
+};
+
+module.exports = radomDo;
+module.exports = searchMovies;
+module.exports = searchMusic;
