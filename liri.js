@@ -23,31 +23,32 @@ spotify-this-song
 movie-this
 do-what-it-says */
 function switchCases(commandInput,searchTerm) {
-switch (commandInput) {
-    case 'concert-this':
-        console.log('searching concert');
-        searchMusic(searchTerm);
-        break;
-    case 'spotify-this-song':
-        console.log('searching song');
-        searchSpot(searchTerm);
+    switch (commandInput) {
+        case 'concert-this':
+            console.log('searching concert');
+            searchMusic(searchTerm);
+            break;
+        case 'spotify-this-song':
+            console.log('searching song');
+            searchSpot(searchTerm);
 
-        //        console.log("search " + searchTerm);
-        break;
-    case 'movie-this':
-        console.log('searching movies');
-        searchMovies(searchTerm);
-        break;
-    case 'do-what-it-says':
-        console.log('doing what it says');
-        randomDo();
-        break;
+            //        console.log("search " + searchTerm);
+            break;
+        case 'movie-this':
+            console.log('searching movies');
+            searchMovies(searchTerm);
+            break;
+        case 'do-what-it-says':
+            console.log('doing what it says');
+            randomDo();
+            break;
 
-}
+    }
 }
 
 // Spotify Search funtion
 function searchSpot(searchTerm) {
+    if (!searchTerm){ searchTerm = "wish you were here"}
     spotify.search({
         type: 'track',
         query: `"${searchTerm}"`,
@@ -77,6 +78,7 @@ function searchSpot(searchTerm) {
 
 //search music events by band / peroformer name
 function searchMusic (searchTerm) {
+    if (!searchTerm){ searchTerm = "311"}
     axios.get(`https://api.seatgeek.com/2/events?client_id=${keys.seatgeak.id}&performers.slug=${searchTerm}`)
     .then(function (response){
         for (let i=0; i < response.data.events.length; i++) {
@@ -94,12 +96,14 @@ ___________  `);
     .catch(function (error) {
         console.log("An error occured " + error);
     });
-
+    //return response;
 
 };
 
 //search movies
 function searchMovies (searchTerm) {
+    if (!searchTerm){ searchTerm = "the matrix"}
+
     axios.get(`http://www.omdbapi.com/?apikey=${keys.omdb.id}&t=${searchTerm}`)
     .then(function (response) {
         console.log(`
@@ -132,7 +136,7 @@ function randomDo() {
             searchTerm = data[1]
             searchSpot(searchTerm);
         }
-    });
+    })
 };
 
 module.exports = {randomDo,searchMovies,searchMusic,switchCases}
