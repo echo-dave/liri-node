@@ -22,14 +22,22 @@ function goSearch() {
         }
 
     ]).then(function (answers) {
-        let searchWhat = new Promise(function (resolve, reject) {
-            search.switchCases(answers.commandInput, answers.searchTerm);
-        })
+        // let searchWhat = new Promise(function (resolve, reject) {
+        //     search.switchCases(answers.commandInput, answers.searchTerm);
+        // })
 
-        searchWhat.then(function (fulfilled) {
-            console.log("search");
-            anotherSearch();
-        })
+        // searchWhat.then(function (fulfilled) {
+        //     console.log("search");
+        //     anotherSearch();
+        // })
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     });
+        search.switchCases(answers.commandInput, answers.searchTerm)
+            .then(function (fulfilled) {
+                console.log("search");
+                anotherSearch();
+            })
             .catch(function (error) {
                 console.log(error);
             });
